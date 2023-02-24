@@ -66,7 +66,17 @@ pipeline {
           // dockerHubRegistryCredential : environment에서 선언한 docker_cre  
             sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
             sh "docker push ${dockerHubRegistry}:latest"
-         }
-        
+        }
 
-
+      }
+      post {
+        failure {
+          echo 'docker image push failure'
+        }
+        success {
+          echo 'docker image push success'
+        }
+      }
+    }
+  }
+}

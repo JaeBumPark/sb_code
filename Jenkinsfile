@@ -6,12 +6,12 @@ pipeline {
   }
   
   environment {
-    gitName = 'pcmin929'
-    gitEmail = 'pcmin929@gmail.com'
-    gitWebaddress = 'https://github.com/pcmin929/sb_code.git'
-    gitSshaddress = 'git@github.com:pcmin929/sb_code.git'
+    gitName = 'JaeBumPark'
+    gitEmail = 'jack29@naver.com'
+    gitWebaddress = 'https://github.com/JaeBumPark/sb_code'
+    gitSshaddress = 'git@github.com/JaeBumPark/sb_code'
     gitCredential = 'git_cre' // github credential 생성시의 ID
-    dockerHubRegistry = 'oolralra/sbimage'
+    dockerHubRegistry = 'kyontoki/sbimage'
   }
 
   stages {

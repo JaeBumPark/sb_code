@@ -6,12 +6,12 @@ pipeline {
   }
   
   environment {
-    gitName = 'JaeBumPark'
-    gitEmail = 'jack29@naver.com'
-    gitWebaddress = 'https://github.com/JaeBumPark/sb_code'
-    gitSshaddress = 'git@github.com/JaeBumPark/sb_code'
+    gitName = 'pcmin929'
+    gitEmail = 'pcmin929@gmail.com'
+    gitWebaddress = 'https://github.com/pcmin929/sb_code.git'
+    gitSshaddress = 'git@github.com:pcmin929/sb_code.git'
     gitCredential = 'git_cre' // github credential 생성시의 ID
-    dockerHubRegistry = 'kyontoki/sbimage'
+    dockerHubRegistry = 'oolralra/sbimage'
   }
 
   stages {
@@ -33,7 +33,15 @@ pipeline {
         sh 'mvn clean install'
         // maven 플러그인이 미리 설치 되어있어야 함.
       }
-      
+      post {
+        failure {
+          echo 'maven build failure'
+        }
+        success {
+          echo 'maven build success'
+        }
+      }
+    }
     stage('Docker image Build') {
       steps {
         sh "docker build -t ${dockerHubRegistry}:${currentBuild.number} ."
@@ -43,10 +51,10 @@ pipeline {
       }
       post {
         failure {
-          echo 'maven build failure'
+          echo 'docker image build failure'
         }
         success {
-          echo 'maven build success'
+          echo 'docker image build success'
         }
       }
     }
